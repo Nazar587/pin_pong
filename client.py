@@ -48,7 +48,7 @@ back = transform.scale(back, (WIDTH, HEIGHT))
 back = transform.flip(back, True, False)
 platform = image.load("platform.jpg")
 platform = transform.rotate(platform, 90)
-platform = transform.scale(platform, (20, 100))
+platform = transform.scale(platform, (50, 100))
 # --- ЗВУКИ ---
 mixer.music.load("smoo.ogg")
 mixer.music.play(-1)
@@ -105,11 +105,9 @@ while True:
     if game_state:
         #screen.fill((30, 30, 30))
         screen.blit(back, (0, 0))
-        screen.blit(platform, (20, game_state['paddles']['0']))
-        screen.blit(platform, (WIDTH - 40, game_state['paddles']['0']))
+        screen.blit(platform, (10, game_state['paddles']['0']))
+        screen.blit(platform, (WIDTH - 60, game_state['paddles']['1']))
         draw.circle(screen, (255, 255, 255), (game_state['ball']['x'], game_state['ball']['y']), 10)
-        draw.rect(screen, (0, 255, 0), (20, game_state['paddles']['0'], 20, 100))
-        draw.rect(screen, (255, 0, 255), (WIDTH - 40, game_state['paddles']['1'], 20, 100))
         draw.circle(screen, (255, 255, 255), (game_state['ball']['x'], game_state['ball']['y']), 10)
         score_text = font_main.render(f"{game_state['scores'][0]} : {game_state['scores'][1]}", True, (255, 255, 255))
         screen.blit(score_text, (WIDTH // 2 -25, 20))
@@ -142,3 +140,5 @@ while True:
         client.send(b"UP")
     elif keys[K_s]:
         client.send(b"DOWN")
+
+
